@@ -26,7 +26,13 @@ import com.selfishara.gymspot.core.ui.components.base.AppCard
  * quick access to key features such as workouts, routines, and gyms.
  */
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onStartWorkoutClick: () -> Unit,
+    onExercisesClick: () -> Unit,
+    onRoutinesClick: () -> Unit,
+    onGymsClick: () -> Unit,
+    onProfileClick: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -35,17 +41,17 @@ fun HomeScreen() {
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         HomeHeader()
-        MainWorkoutCard()
-        QuickActionsSection()
+        MainWorkoutCard(onStartWorkoutClick = onStartWorkoutClick)
+        QuickActionsSection(
+            onExercisesClick = onExercisesClick,
+            onRoutinesClick = onRoutinesClick,
+            onGymsClick = onGymsClick,
+            onProfileClick = onProfileClick
+        )
         ProgressSummarySection()
     }
 }
 
-/**
- * Displays the header section of the home screen with a welcome message.
- *
- * This section greets the user and sets a positive tone for their workout session.
- */
 @Composable
 private fun HomeHeader() {
     Column {
@@ -69,7 +75,9 @@ private fun HomeHeader() {
  * a quick overview of the workout tracking features available in the app.
  */
 @Composable
-private fun MainWorkoutCard() {
+private fun MainWorkoutCard(
+    onStartWorkoutClick: () -> Unit
+) {
     AppCard(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -87,7 +95,7 @@ private fun MainWorkoutCard() {
             )
             AppButton(
                 text = "Start workout",
-                onClick = {}
+                onClick = onStartWorkoutClick
             )
         }
     }
@@ -100,7 +108,13 @@ private fun MainWorkoutCard() {
  * to quickly navigate to exercises, routines, gyms, and their profile.
  */
 @Composable
-private fun QuickActionsSection() {
+private fun QuickActionsSection(
+    onExercisesClick: () -> Unit,
+    onRoutinesClick: () -> Unit,
+    onGymsClick: () -> Unit,
+    onProfileClick: () -> Unit
+
+) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -116,13 +130,15 @@ private fun QuickActionsSection() {
             QuickActionCard(
                 modifier = Modifier.weight(1f),
                 title = "Exercises",
-                subtitle = "Browse exercises"
+                subtitle = "Browse exercises",
+                onClick = onExercisesClick
             )
 
             QuickActionCard(
                 modifier = Modifier.weight(1f),
                 title = "Routines",
-                subtitle = "View your plans"
+                subtitle = "View your plans",
+                onClick = onRoutinesClick
             )
         }
 
@@ -133,13 +149,15 @@ private fun QuickActionsSection() {
             QuickActionCard(
                 modifier = Modifier.weight(1f),
                 title = "Gyms",
-                subtitle = "Find nearby gyms"
+                subtitle = "Find nearby gyms",
+                onClick = onGymsClick
             )
 
             QuickActionCard(
                 modifier = Modifier.weight(1f),
                 title = "Profile",
-                subtitle = "Check your progress"
+                subtitle = "Check your progress",
+                onClick = onProfileClick
             )
         }
     }
@@ -155,10 +173,12 @@ private fun QuickActionsSection() {
 private fun QuickActionCard(
     title: String,
     subtitle: String,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     AppCard(
-        modifier = modifier
+        modifier = modifier,
+        onClick = onClick
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(6.dp)
@@ -207,12 +227,6 @@ private fun ProgressSummarySection() {
     }
 }
 
-/**
- * Displays a single summary item with a label and value.
- *
- * @param label The description of the summary item (e.g., "Weekly workouts")
- * @param value The corresponding value for the summary item (e.g., "3")
- */
 @Composable
 private fun SummaryItem(
     label: String,

@@ -10,11 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 /**
- * Reusable card container used to group content.
+ * Displays a card for a quick action on the home screen.
  *
+ * @param title The main title of the action (e.g., "Exercises")
+ * @param subtitle A brief description of the action (e.g., "Browse exercises")
+ * @param onClick Action triggered when the card is pressed
  * @param modifier Modifier for styling and layout
- * @param onClick Optional click action for interactive cards
- * @param content Composable content inside the card
  */
 @Composable
 fun AppCard(
@@ -24,7 +25,7 @@ fun AppCard(
 ) {
     Card(
         modifier = if (onClick != null){
-            modifier.clickable{ onClick() }
+            modifier.clickable { onClick() }
         } else {
             modifier
         },

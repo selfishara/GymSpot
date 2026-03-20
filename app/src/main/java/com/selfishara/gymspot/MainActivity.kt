@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.selfishara.gymspot.core.ui.theme.GymSpotTheme
-import com.selfishara.gymspot.navigation.GymSpotNavGraph
+import com.selfishara.gymspot.core.navigation.GymSpotNavGraph
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 

@@ -24,7 +24,15 @@ fun GymSpotNavGraph() {
         navController = navController,
         startDestination = Routes.HOME
     ) {
-        composable(Routes.HOME) { HomeScreen() }
+        composable(Routes.HOME) {
+            HomeScreen(
+                onStartWorkoutClick = { navController.navigate(Routes.ROUTINES) },
+                onExercisesClick = { navController.navigate(Routes.EXERCISES) },
+                onRoutinesClick = { navController.navigate(Routes.ROUTINES) },
+                onGymsClick = { navController.navigate(Routes.GYMS) },
+                onProfileClick = { navController.navigate(Routes.PROFILE) }
+            )
+        }
         composable(Routes.EXERCISES) { ExerciseScreen() }
         composable(Routes.ROUTINES) { RoutineScreen() }
         composable(Routes.GYMS) { GymScreen() }

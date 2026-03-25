@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.selfishara.gymspot.features.auth.presentation.RegisterScreen
 import com.selfishara.gymspot.features.home.presentation.HomeScreen
 import com.selfishara.gymspot.features.exercises.presentation.ExerciseScreen
 import com.selfishara.gymspot.features.routines.presentation.RoutineScreen
@@ -33,6 +34,9 @@ fun GymSpotNavGraph() {
                 onProfileClick = { navController.navigate(Routes.PROFILE) }
             )
         }
+
+        composable(Routes.REGISTER) { RegisterScreen() }
+
         composable(Routes.EXERCISES) { ExerciseScreen() }
         composable(Routes.ROUTINES) { RoutineScreen() }
         composable(Routes.GYMS) { GymScreen() }

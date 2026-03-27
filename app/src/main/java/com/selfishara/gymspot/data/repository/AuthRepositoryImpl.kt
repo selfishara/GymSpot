@@ -46,4 +46,16 @@ class AuthRepositoryImpl : AuthRepository {
     override fun isUserLoggedIn(): Boolean{
         return SupabaseClientProvider.client.auth.currentSessionOrNull() != null
     }
+
+    override suspend fun signOut(): ResultWrapper<Unit> {
+        return try {
+            SupabaseClientProvider.client.auth.signOut()
+            ResultWrapper.Success(Unit)
+        } catch (exception: Exception) {
+            ResultWrapper.Error(
+                message = exception.message ?: "An unexpected error occurred during sign out.",
+                throwable = exception
+            )
+        }
+    }
 }

@@ -33,8 +33,9 @@ interface AuthRepository{
         password: String
     ): ResultWrapper<Unit>
 
-
     fun isUserLoggedIn(): Boolean
+
+    suspend fun signOut(): ResultWrapper<Unit>
 
 
 }

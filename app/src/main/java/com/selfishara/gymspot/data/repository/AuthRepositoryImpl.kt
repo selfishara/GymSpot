@@ -42,4 +42,8 @@ class AuthRepositoryImpl : AuthRepository {
             )
         }
     }
+
+    override fun isUserLoggedIn(): Boolean{
+        return SupabaseClientProvider.client.auth.currentSessionOrNull() != null
+    }
 }

@@ -1,6 +1,8 @@
 package com.selfishara.gymspot.domain.repository
 
+import com.selfishara.gymspot.core.network.SupabaseClientProvider
 import com.selfishara.gymspot.core.result.ResultWrapper
+import io.github.jan.supabase.auth.auth
 
 /**
  * Repository contract for authentication-related operations.
@@ -30,4 +32,9 @@ interface AuthRepository{
         email: String,
         password: String
     ): ResultWrapper<Unit>
+
+
+    fun isUserLoggedIn(): Boolean
+
+
 }

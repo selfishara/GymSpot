@@ -18,4 +18,16 @@ interface AuthRepository{
         email: String,
         password: String
     ): ResultWrapper<Unit>
+
+    /**
+     * Sings in an existing user using email and password.
+     *
+     * @param email User email
+     * @param password User password
+     * @return Result of the sign in operation
+     */
+    suspend fun signIn(
+        email: String,
+        password: String
+    ): ResultWrapper<Unit>
 }

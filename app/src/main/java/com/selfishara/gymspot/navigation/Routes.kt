@@ -9,6 +9,7 @@ package com.selfishara.gymspot.navigation
 object Routes {
     const val HOME = "home"
     const val REGISTER = "register"
+    const val LOGIN = "login"
     const val EXERCISES = "exercises"
     const val ROUTINES = "routines"
     const val GYMS = "gyms"

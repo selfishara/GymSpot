@@ -10,6 +10,8 @@ import com.selfishara.gymspot.features.exercises.presentation.ExerciseScreen
 import com.selfishara.gymspot.features.routines.presentation.RoutineScreen
 import com.selfishara.gymspot.features.gyms.presentation.GymScreen
 import com.selfishara.gymspot.features.profile.presentation.ProfileScreen
+import com.selfishara.gymspot.features.auth.presentation.LoginScreen
+
 /**
  * Main navigation graph of the GymSpot application.
  *
@@ -23,8 +25,22 @@ fun GymSpotNavGraph() {
 
     NavHost(
         navController = navController,
-        startDestination = Routes.HOME
+        startDestination = Routes.LOGIN
     ) {
+        composable(Routes.LOGIN) {
+            LoginScreen(
+                onLoginSuccess = { navController.navigate(Routes.HOME)
+                {
+                    popUpTo(Routes.LOGIN) { inclusive = true }
+                    }
+                }
+            )
+        }
+
+        composable(Routes.REGISTER) {
+            RegisterScreen()
+        }
+
         composable(Routes.HOME) {
             HomeScreen(
                 onStartWorkoutClick = { navController.navigate(Routes.ROUTINES) },
@@ -34,8 +50,6 @@ fun GymSpotNavGraph() {
                 onProfileClick = { navController.navigate(Routes.PROFILE) }
             )
         }
-
-        composable(Routes.REGISTER) { RegisterScreen() }
 
         composable(Routes.EXERCISES) { ExerciseScreen() }
         composable(Routes.ROUTINES) { RoutineScreen() }

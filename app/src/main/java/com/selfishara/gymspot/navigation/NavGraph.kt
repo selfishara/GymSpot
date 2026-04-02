@@ -34,7 +34,7 @@ fun GymSpotNavGraph() {
         AppStartState.Authenticated -> {
             NavHost(
                 navController = navController,
-                startDestination = Routes.HOME
+                startDestination = Routes.EXERCISES
             ) {
                 composable(Routes.HOME) {
                     HomeScreen(

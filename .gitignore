@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+.openclaw_pr_diff.txt
+.openclaw_pr_prompt.txt

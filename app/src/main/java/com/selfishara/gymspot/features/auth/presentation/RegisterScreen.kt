@@ -12,12 +12,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.selfishara.gymspot.core.ui.components.base.AppButton
 import com.selfishara.gymspot.core.ui.components.base.AppCard
-import com.selfishara.gymspot.core.ui.components.base.AppTextField
+import com.selfishara.gymspot.core.ui.components.base.AppTextField 
 
 /**
  * Register screen of the GymSpot application.
@@ -29,6 +32,8 @@ fun RegisterScreen(
     viewModel: RegisterViewModel = viewModel()
 ){
     val uiState by viewModel.uiState.collectAsState()
+    val isPasswordVisible= rememberSaveable { mutableStateOf(false) }
+    val isConfirmPasswordVisible = rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -67,14 +72,26 @@ fun RegisterScreen(
                     value = uiState.password,
                     onValueChange = viewModel::onPasswordChanged,
                     label = "Password",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    isPassword = true,
+                    isPasswordVisible = isPasswordVisible.value,
+                    onPasswordVisibilityToggle = {
+                        isPasswordVisible.value = !isPasswordVisible.value
+                    },
+                    imeAction = ImeAction.Next
                 )
 
                 AppTextField(
                     value = uiState.confirmPassword,
                     onValueChange = viewModel::onConfirmPasswordChanged,
                     label = "Confirm password",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    isPassword = true,
+                    isPasswordVisible = isConfirmPasswordVisible.value,
+                    onPasswordVisibilityToggle = {
+                        isConfirmPasswordVisible.value = !isConfirmPasswordVisible.value
+                    },
+                    imeAction = ImeAction.Done
                 )
 
                 uiState.errorMessage?.let { error ->

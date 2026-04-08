@@ -17,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.input.ImeAction
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.selfishara.gymspot.core.ui.components.base.AppButton
 import com.selfishara.gymspot.core.ui.components.base.AppCard
@@ -82,7 +83,8 @@ fun LoginScreen(
                     isPasswordVisible = isPasswordVisible.value,
                     onPasswordVisibilityToggle = {
                         isPasswordVisible.value = !isPasswordVisible.value
-                    }
+                    },
+                    imeAction = ImeAction.Done
                 )
 
                 uiState.errorMessage?.let { error ->

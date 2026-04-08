@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.selfishara.gymspot.core.ui.components.base.AppButton
@@ -67,7 +68,7 @@ fun RegisterScreen(
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                AppTextField(
+               AppTextField(
                     value = uiState.password,
                     onValueChange = viewModel::onPasswordChanged,
                     label = "Password",
@@ -75,8 +76,9 @@ fun RegisterScreen(
                     isPassword = true,
                     isPasswordVisible = isPasswordVisible.value,
                     onPasswordVisibilityToggle = {
-                    isPasswordVisible.value = !isPasswordVisible.value
-                    }
+                        isPasswordVisible.value = !isPasswordVisible.value
+                    },
+                    imeAction = ImeAction.Next
                 )
 
                 AppTextField(
@@ -87,8 +89,9 @@ fun RegisterScreen(
                     isPassword = true,
                     isPasswordVisible = isConfirmPasswordVisible.value,
                     onPasswordVisibilityToggle = {
-                    isConfirmPasswordVisible.value = !isConfirmPasswordVisible.value
-                    }
+                        isConfirmPasswordVisible.value = !isConfirmPasswordVisible.value
+                    },
+                    imeAction = ImeAction.Done
                 )
 
                 uiState.errorMessage?.let { error ->

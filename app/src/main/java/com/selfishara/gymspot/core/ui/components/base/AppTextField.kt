@@ -1,5 +1,6 @@
 package com.selfishara.gymspot.core.ui.components.base
 
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -9,6 +10,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 
@@ -22,6 +25,8 @@ import androidx.compose.ui.text.input.VisualTransformation
  * @param isPassword Whether this field should behave as a password field
  * @param isPasswordVisible Whether the password is currently visible
  * @param onPasswordVisibilityToggle Callback triggered when the visibility icon is pressed
+ * @param keyboardType Keyboard type used by the field
+ * @param imeAction IME action displayed on the keyboard
  */
 @Composable
 fun AppTextField(
@@ -31,7 +36,9 @@ fun AppTextField(
     modifier: Modifier = Modifier,
     isPassword: Boolean = false,
     isPasswordVisible: Boolean = false,
-    onPasswordVisibilityToggle: (() -> Unit)? = null
+    onPasswordVisibilityToggle: (() -> Unit)? = null,
+    keyboardType: KeyboardType = if (isPassword) KeyboardType.Password else KeyboardType.Text,
+    imeAction: ImeAction = ImeAction.Default
 ) {
     OutlinedTextField(
         value = value,
@@ -43,6 +50,10 @@ fun AppTextField(
         } else {
             VisualTransformation.None
         },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = keyboardType,
+            imeAction = imeAction
+        ),
         trailingIcon = {
             if (isPassword && onPasswordVisibilityToggle != null) {
                 IconButton(onClick = onPasswordVisibilityToggle) {

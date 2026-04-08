@@ -64,9 +64,9 @@ fun AppTextField(
                             Icons.Filled.Visibility
                         },
                         contentDescription = if (isPasswordVisible) {
-                            "Hide password"
+                            "Hide $label"
                         } else {
-                            "Show password"
+                            "Show $label"
                         }
                     )
                 }

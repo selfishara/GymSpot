@@ -68,7 +68,7 @@ fun RegisterScreen(
                     modifier = Modifier.fillMaxWidth()
                 )
 
-               AppTextField(
+                AppTextField(
                     value = uiState.password,
                     onValueChange = viewModel::onPasswordChanged,
                     label = "Password",
